@@ -1,6 +1,6 @@
 BEGIN;
 
-TRUNCATE
+  TRUNCATE
   "word",
   "language",
   "user";
@@ -21,23 +21,29 @@ TRUNCATE
   VALUES
     (1, 'Spanish', 1);
 
-INSERT INTO "word" ("id", "language_id", "original", "translation", "next")
-VALUES
-  (1, 1, 'entraine toi', 'practice', 2),
-  (2, 1, 'bonjour', 'hello', 3),
-  (3, 1, 'maison', 'house', 4),
-  (4, 1, 'développeur', 'developer', 5),
-  (5, 1, 'traduire', 'translate', 6),
-  (6, 1, 'incroyable', 'amazing', 7),
-  (7, 1, 'chien', 'dog', 8),
-  (8, 1, 'chat', 'cat', null);
+  INSERT INTO "word"
+    ("id", "language_id", "original", "translation", "next")
+  VALUES
+    (1, 1, 'el programacíon', 'programming', 2),
+    (2, 1, 'la computadora', 'computer', 3),
+    (3, 1, 'la programadora', 'programmer', 4),
+    (4, 1, 'el algoritmo', 'algorithm', 5),
+    (5, 1, 'el aplicacíon', 'application', 6),
+    (6, 1, 'el compilador', 'compiler', 7),
+    (7, 1, 'el objeto', 'object', 8),
+    (8, 1, 'la interfaz', 'interface', 9),
+    (9, 1, 'el servidr', 'server', 10),
+    (10, 1, 'el cliente', 'client', null);
 
-UPDATE "language" SET head = 1 WHERE id = 1;
+  UPDATE "language" SET head = 1 WHERE id = 1;
 
--- because we explicitly set the id fields
--- update the sequencer for future automatic id setting
-SELECT setval('word_id_seq', (SELECT MAX(id) from "word"));
-SELECT setval('language_id_seq', (SELECT MAX(id) from "language"));
-SELECT setval('user_id_seq', (SELECT MAX(id) from "user"));
+  -- because we explicitly set the id fields
+  -- update the sequencer for future automatic id setting
+  SELECT setval('word_id_seq', (SELECT MAX(id)
+    from "word"));
+  SELECT setval('language_id_seq', (SELECT MAX(id)
+    from "language"));
+  SELECT setval('user_id_seq', (SELECT MAX(id)
+    from "user"));
 
-COMMIT;
+  COMMIT;
