@@ -32,7 +32,7 @@ BEGIN;
     (6, 1, 'el compilador', 'compiler', 7),
     (7, 1, 'el objeto', 'object', 8),
     (8, 1, 'la interfaz', 'interface', 9),
-    (9, 1, 'el servidr', 'server', 10),
+    (9, 1, 'el servidor', 'server', 10),
     (10, 1, 'el cliente', 'client', null);
 
   UPDATE "language" SET head = 1 WHERE id = 1;
