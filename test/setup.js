@@ -13,3 +13,5 @@ const supertest = require('supertest')
 
 global.expect = expect
 global.supertest = supertest
+
+// why are my tests not passing? this is strange here!
