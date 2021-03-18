@@ -61,7 +61,7 @@ const UserService = {
         ["el compilador", "compiler", 7],
         ["el objeto", "object", 8],
         ["la interfaz", "interface", 9],
-        ["el servidr", "server", 10],
+        ["el servidor", "server", 10],
         ["el cliente", "client", null],
       ];
 
