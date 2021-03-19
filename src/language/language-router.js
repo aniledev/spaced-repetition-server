@@ -37,7 +37,7 @@ languageRouter.get("/", async (req, res, next) => {
       req.language.id
     );
 
-    // returns  a json response oject with the language as a property and the words as anotehr property
+    // returns  a json response object with the language as a property and the words as another property
     res.json({
       language: req.language,
       words,
@@ -50,7 +50,10 @@ languageRouter.get("/", async (req, res, next) => {
 
 languageRouter.get("/head", async (req, res, next) => {
   // implement me
-  res.send("implement me!");
+    // use the LanguageService to get the first word in the list
+    // create a variable to hold the next word received from the service
+    // returns  a json response object with the information from the server as json response object, the netxt word, total counts, etc
+    res.json({
 });
 
 languageRouter.post("/guess", async (req, res, next) => {
