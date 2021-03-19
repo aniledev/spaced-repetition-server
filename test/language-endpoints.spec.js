@@ -130,6 +130,8 @@ describe('Language Endpoints', function () {
         .expect(200)
         .expect({
           nextWord: headWord.original,
+          correctCount: 0,
+          incorrectCount: 0,
           totalScore: 0,
           wordCorrectCount: 0,
           wordIncorrectCount: 0,
