@@ -54,6 +54,11 @@ languageRouter.get("/head", async (req, res, next) => {
   try {
     // use the LanguageService to get the first word in the list
     // create a variable to hold the next word received from the service
+    const nextWord = await LanguageService.getNextWord(
+      req.app.get("db"),
+      req.language.id
+    );
+
     // returns  a json response object with the information from the server as json response object, the netxt word, total counts, etc
     res.json({
     });
