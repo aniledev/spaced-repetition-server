@@ -1,9 +1,10 @@
-'use strict';
+"use strict";
 
 class _Node {
   constructor(value, next) {
     this.value = value;
-    this.next = next;  }
+    this.next = next;
+  }
 }
 
 class LinkedList {
@@ -26,6 +27,56 @@ class LinkedList {
       }
       tempNode.next = new _Node(item, null);
     }
+  }
+
+  insertAt(newValue, index) {
+    // linked lists are technically indexed but a counter variable would at as a stand in
+    let count = 1;
+    let currNode = this.head;
+    while (count < index) {
+      if (currNode.next === null) {
+        console.log("Could not find that index");
+        return;
+      }
+      count++;
+      currNode = currNode.next;
+    }
+    currNode.next = new _Node(newValue, currNode.next);
+  }
+
+  insertBefore(newValue, beforeTarget) {
+    if (!this.head) {
+      this.insertFirst(newValue);
+    }
+    let currNode = this.head;
+    let previousNode = this.head;
+
+    while (currNode !== null && currNode.value !== beforeTarget) {
+      // Save the previous node
+      previousNode = currNode;
+      currNode = currNode.next;
+    }
+    if (currNode === null) {
+      console.log("Target not found");
+      return;
+    }
+    previousNode.next = new _Node(newValue, previousNode.next);
+  }
+
+  insertAfter(newValue, afterTarget) {
+    if (!this.head) {
+      this.insertFirst(newValue);
+    }
+    let currNode = this.head;
+    while (currNode.next !== null && currNode.value !== afterTarget) {
+      currNode = currNode.next;
+    }
+    if (currNode.next === null) {
+      console.log("Target not found");
+      return;
+    }
+    let newNode = new _Node(newValue, currNode.next);
+    currNode.next = newNode;
   }
 
   find(item) {
