@@ -84,6 +84,11 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
     res.status(400).json({ error: "Missing guess in request body" });
   }
   // use a try / catch block like th api/language endpoint
+  try {
+    next();
+  } catch (error) {
+    next(error);
+  }
 
   // in order to check the guess we have to get the lists of words from the database
 
