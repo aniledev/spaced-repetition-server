@@ -1,4 +1,5 @@
 const LanguageService = {
+  // get the language from the database for a specific user
   getUsersLanguage(db, user_id) {
     return db
       .from('language')
@@ -13,6 +14,7 @@ const LanguageService = {
       .first()
   },
 
+  // gets the word list for a specific language
   getLanguageWords(db, language_id) {
     return db
       .from('word')
