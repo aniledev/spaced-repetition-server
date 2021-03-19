@@ -99,7 +99,12 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
       req.language.id
     );
 
-  // we then have to figure out a way to check if the word is correct and send a response, translation === guess
+    // we then have to figure out a way to check if the word is correct and send a response, translation === guess
+    // use the checkTranslation to create a new object and check against the database values
+    const checkWord = await LanguageService.checkTranslation(
+      req.app.get("db"),
+      req.language.id
+    );
 
   // this is where the spaced rep, gets implement, use a linked list, if the guess is correct then the move gets moved in the lisk
 
