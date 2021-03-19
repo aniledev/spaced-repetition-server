@@ -58,6 +58,8 @@ const LanguageService = {
       .select("*")
       .where({ language_id });
   },
+
+  // a service needs to be created to create a linked list using the words from the databse
 };
 
 module.exports = LanguageService;
