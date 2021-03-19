@@ -51,10 +51,15 @@ languageRouter.get("/", async (req, res, next) => {
 // use this endpoint to get the first word in the word table in database, use the getLanguageService, getHead
 languageRouter.get("/head", async (req, res, next) => {
   // implement me
+  try {
     // use the LanguageService to get the first word in the list
     // create a variable to hold the next word received from the service
     // returns  a json response object with the information from the server as json response object, the netxt word, total counts, etc
     res.json({
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 languageRouter.post("/guess", async (req, res, next) => {
