@@ -115,8 +115,6 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-
-  res.send("implement me!");
 });
 
 module.exports = languageRouter;
