@@ -26,7 +26,15 @@ const LanguageService = {
         'correct_count',
         'incorrect_count',
       )
-      .where({ language_id })
+  // i need a service to get the very next word in the list so it can display on the client
+  getNextWord(db, language_id) {
+    return db
+      .from("word")
+      .join("language", "word.id", "=", "language.head")
+      .select("original", "language_id", "correct_count", "incorrect_count")
+      .where({ language_id });
+  },
+
   },
 }
 
