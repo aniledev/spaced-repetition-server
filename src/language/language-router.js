@@ -61,7 +61,12 @@ languageRouter.get("/head", async (req, res, next) => {
 
     // returns  a json response object with the information from the server as json response object, the netxt word, total counts, etc
     res.json({
+      nextWord: nextWord.original,
+      correctCount: nextWord.correct_count,
+      incorrectCount: nextWord.incorrect_count,
+      totalScore: req.language.total_score,
     });
+    next();
   } catch (error) {
     next(error);
   }
