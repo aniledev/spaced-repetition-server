@@ -1,6 +1,7 @@
 const express = require("express");
 const LanguageService = require("./language-service");
 const { requireAuth } = require("../middleware/jwt-auth");
+const bodyParser = express.json()
 
 const languageRouter = express.Router();
 
@@ -72,7 +73,8 @@ languageRouter.get("/head", async (req, res, next) => {
   }
 });
 
-languageRouter.post("/guess", async (req, res, next) => {
+// post requests need a json body parser
+languageRouter.post("/guess", bodyParser, async (req, res, next) => {
   // implement me
   // destructure the request body to access the guess
   //validate is guess field is missing/ if so send an error
