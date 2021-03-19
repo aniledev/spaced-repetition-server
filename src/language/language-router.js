@@ -85,12 +85,12 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
   }
   // use a try / catch block like th api/language endpoint
   try {
-    next();
-  } catch (error) {
-    next(error);
-  }
-
-  // in order to check the guess we have to get the lists of words from the database
+    // in order to check the guess we have to get the lists of words from the database
+    // use the LanguageService to get the list of words in the database for that language in the database
+    const words = await LanguageService.getLanguageWords(
+      req.app.get("db"),
+      req.language.id
+    );
 
   // then we have to get the start of the words they are practicing
 
@@ -100,6 +100,11 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
 
   // else  if it is incorrect send another response translation !== guess
   //if wrong, the words tested also gets updated by position in the linked list
+
+    next();
+  } catch (error) {
+    next(error);
+  }
 
   res.send("implement me!");
 });
