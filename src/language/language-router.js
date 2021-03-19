@@ -48,6 +48,7 @@ languageRouter.get("/", async (req, res, next) => {
   }
 });
 
+// use this endpoint to get the first word in the word table in database, use the getLanguageService, getHead
 languageRouter.get("/head", async (req, res, next) => {
   // implement me
     // use the LanguageService to get the first word in the list
