@@ -22,7 +22,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/language", languageRouter);
 app.use("/api/user", userRouter);
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello Express!");
 });
 
