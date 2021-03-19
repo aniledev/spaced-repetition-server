@@ -1,7 +1,7 @@
 const express = require("express");
 const LanguageService = require("./language-service");
 const { requireAuth } = require("../middleware/jwt-auth");
-const bodyParser = express.json()
+const bodyParser = express.json();
 
 const languageRouter = express.Router();
 
@@ -77,11 +77,15 @@ languageRouter.get("/head", async (req, res, next) => {
 languageRouter.post("/guess", bodyParser, async (req, res, next) => {
   // implement me
   // destructure the request body to access the guess
-  //validate is guess field is missing/ if so send an error
+  const guess = req.body.guess;
 
+  //validate is guess field is missing/ if so send an error, 400 status code
+  if (!guess) {
+    res.status(400).json({ error: "Missing guess in request body" });
+  }
   // use a try / catch block like th api/language endpoint
 
-  // in order to check the guess we have to get the lists of words from the database 
+  // in order to check the guess we have to get the lists of words from the database
 
   // then we have to get the start of the words they are practicing
 
