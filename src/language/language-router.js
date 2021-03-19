@@ -106,10 +106,15 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
       req.language.id
     );
 
-  // this is where the spaced rep, gets implement, use a linked list, if the guess is correct then the move gets moved in the lisk
+    // this is where the spaced rep, gets implement, use a linked list, if the guess is correct then the move gets moved in the lisk
+    if (checkWord.translation === guess) {
+      /* do something */
+    } else {
+      /* do something */
+    }
+    // else  if it is incorrect send another response translation !== guess
 
-  // else  if it is incorrect send another response translation !== guess
-  //if wrong, the words tested also gets updated by position in the linked list
+    //if wrong, the words tested also gets updated by position in the linked list
 
     next();
   } catch (error) {
