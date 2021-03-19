@@ -54,7 +54,7 @@ languageRouter.get("/head", async (req, res, next) => {
   try {
     // use the LanguageService to get the first word in the list
     // create a variable to hold the next word received from the service
-    const nextWord = await LanguageService.getNextWord(
+    const [nextWord] = await LanguageService.getNextWord(
       req.app.get("db"),
       req.language.id
     );
