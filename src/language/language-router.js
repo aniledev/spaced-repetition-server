@@ -74,6 +74,22 @@ languageRouter.get("/head", async (req, res, next) => {
 
 languageRouter.post("/guess", async (req, res, next) => {
   // implement me
+  // destructure the request body to access the guess
+  //validate is guess field is missing/ if so send an error
+
+  // use a try / catch block like th api/language endpoint
+
+  // in order to check the guess we have to get the lists of words from the database 
+
+  // then we have to get the start of the words they are practicing
+
+  // we then have to figure out a way to check if the word is correct and send a response, translation === guess
+
+  // this is where the spaced rep, gets implement, use a linked list, if the guess is correct then the move gets moved in the lisk
+
+  // else  if it is incorrect send another response translation !== guess
+  //if wrong, the words tested also gets updated by position in the linked list
+
   res.send("implement me!");
 });
 
