@@ -92,7 +92,12 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
       req.language.id
     );
 
-  // then we have to get the start of the words they are practicing
+    // then we have to get the start of the words they are practicing
+    // use the get head service and pass in necessary parameters
+    const head = await LanguageService.getLanguageHead(
+      req.app.get("db"),
+      req.language.id
+    );
 
   // we then have to figure out a way to check if the word is correct and send a response, translation === guess
 
