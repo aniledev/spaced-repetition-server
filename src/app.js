@@ -23,7 +23,7 @@ app.use("/api/language", languageRouter);
 app.use("/api/user", userRouter);
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello Express!");
 });
 
 app.use(errorHandler);
