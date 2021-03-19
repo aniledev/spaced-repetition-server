@@ -50,5 +50,30 @@ class LinkedList {
     return currNode;
   }
 
+  remove(item) {
+    // If the list is empty
+    if (!this.head) {
+      return null;
+    }
+    // If the node to be removed is head, make the next node head
+    if (this.head.value === item) {
+      this.head = this.head.next;
+      return;
+    }
+    // Start at the head
+    let currNode = this.head;
+    // Keep track of previous
+    let previousNode = this.head;
 
+    while (currNode !== null && currNode.value !== item) {
+      // Save the previous node
+      previousNode = currNode;
+      currNode = currNode.next;
+    }
+    if (currNode === null) {
+      console.log("Item not found");
+      return;
+    }
+    previousNode.next = currNode.next;
+  }
 }
