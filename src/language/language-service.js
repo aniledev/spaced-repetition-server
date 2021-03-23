@@ -95,8 +95,6 @@ const LanguageService = {
       }
     }
     return list;
-
-    // the list has to be returned from this method, otherwise no linked list was created
   },
 };
 
