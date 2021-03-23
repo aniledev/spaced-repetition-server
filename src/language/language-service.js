@@ -59,7 +59,14 @@ const LanguageService = {
       .where({ language_id });
   },
 
-  // a service needs to be created to create a linked list using the words from the databse
+  // a service needs to be created to create a linked list using the words from the database
+  createLinkedList(words, head) {
+    // find the first word in the database words; id === head
+    // find the index of the first word in the list of database words
+    // declare a variable to hold the spliced list at the head index
+    // create a new linked list using the data structure
+    // insert a node at the end of a new linked list using the list data structure
+  },
 };
 
 module.exports = LanguageService;
