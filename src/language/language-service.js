@@ -71,6 +71,13 @@ const LanguageService = {
     // insert currentWord into the last position in the linked list
     // reassign the nextWord to to currentWord.next
     // reassign the current word variable to where id === nextWord in the words database
+    // loop through the linked list until current word is null
+    // insert word at the end of the linked list
+    // set the next element to be current word.next
+    // if that node position is empty, then it would be null and the new word is null
+    // if it isnt null, then we can reasign the current word variable using the find method id === nextId
+
+    // the list has to be returned from this method, otherwise no linked list was created
   },
 };
 
