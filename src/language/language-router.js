@@ -106,13 +106,12 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
       req.language.id
     );
 
-    // create a linked list in the service using words from the database
-    // const list = ;
-    // this is where the spaced rep, gets implement, use a linked list, if the guess is correct then the move gets moved in the lisk
+    // create a linked list using the service using words from the database
+    const list = LanguageService.createLinkedList(words, head);
     if (checkWord.translation === guess) {
-      /* do something regarding the linked list*/
+      /* if the answer was correct, then double M, the memory value, and reassign*/
     } else {
-      /* do something else regarding the linked list and value positioning */
+      /* if the answer was wrong, reset M, the memory value to 1 and reassign*/
     }
     // else  if it is incorrect send another response translation !== guess
 
