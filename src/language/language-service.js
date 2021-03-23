@@ -66,6 +66,11 @@ const LanguageService = {
     // declare a variable to hold the spliced list at the head index
     // create a new linked list using the data structure
     // insert a node at the end of a new linked list using the list data structure
+    // the id is the next element in the array we created
+    // create a variable to hold the current word, the currentWord is te word in the database where the ids match
+    // insert currentWord into the last position in the linked list
+    // reassign the nextWord to to currentWord.next
+    // reassign the current word variable to where id === nextWord in the words database
   },
 };
 
