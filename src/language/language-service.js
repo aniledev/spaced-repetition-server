@@ -61,16 +61,28 @@ const LanguageService = {
 
   // a service needs to be created to create a linked list using the words from the database
   createLinkedList(words, head) {
-    // find the first word in the database words; id === head
-    // find the index of the first word in the list of database words
-    // declare a variable to hold the spliced list at the head index
     // create a new linked list using the data structure
+    const linkedList = new LinkedList();
+    // find the first word in the database words; id === head
+    const headWord = words.find((word) => word.id === head);
+    // find the index of the first word in the list of database words
+    const headIndex = words.indexOf(headWord);
+    // declare a variable to hold the spliced list at the head index
+    const headNode = words.splice(headIndex, 1);
     // insert a node at the end of a new linked list using the list data structure
+    linkedList.insertLast(headNode[0]);
+
     // the id is the next element in the array we created
+    let nextId = headNode[0].next;
     // create a variable to hold the current word, the currentWord is te word in the database where the ids match
+    let currentWord = words.find((word) => word.id === nextId);
     // insert currentWord into the last position in the linked list
+    linkedList.insertLast(currentWord);
     // reassign the nextWord to to currentWord.next
+    nextId = currentWord.next;
     // reassign the current word variable to where id === nextWord in the words database
+    currentWord = words.find((word) => word.id === nextId);
+
     // loop through the linked list until current word is null
     // insert word at the end of the linked list
     // set the next element to be current word.next
