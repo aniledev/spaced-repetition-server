@@ -153,11 +153,43 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
       });
     } else {
       /* if the answer was wrong, reset M, the memory value to 1 and reassign*/
+      // else  if it is incorrect send another response translation !== guess
+      // if wrong, the words tested also gets updated by position in the linked list
+      list.head.value.memory_value = 1;
+      list.head.value.incorrect_count++;
+
+      let curr = list.head;
+      let countDown = 1;
+      while (countDown > 0) {
+        curr = curr.next;
+        countDown--;
+      }
+
+      const temp = new _Node(list.head.value);
+      temp.next = curr.next;
+      curr.next = temp;
+      list.head = list.head.next;
+      curr.value.next = temp.value.id;
+      temp.value.next = temp.next.value.id;
+
+      // create a method in the service to update the database
+      await LanguageService.updateWordsTable(
+        // once the linked list has changed on the server end, the data has to be sent back to the database to persist
+        req.app.get("db"),
+        listToArray(list),
+        req.language.id,
+        req.language.total_score
+      );
+      // send back the response data to be used on the front end
+      res.json({
+        nextWord: list.head.value.original,
+        totalScore: req.language.total_score,
+        correctCount: list.head.value.correct_count,
+        incorrectCount: list.head.value.incorrect_count,
+        answer: temp.value.translation,
+        isCorrect: false,
+      });
     }
-    // else  if it is incorrect send another response translation !== guess
-
-    //if wrong, the words tested also gets updated by position in the linked list
-
     next();
   } catch (error) {
     next(error);
