@@ -129,4 +129,6 @@ class LinkedList {
   }
 }
 
-module.exports = { LinkedList, _Node };
+function listToArray() {}
+
+module.exports = { LinkedList, _Node, listToArray };
