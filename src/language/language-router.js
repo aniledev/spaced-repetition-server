@@ -111,6 +111,46 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
     const list = LanguageService.createLinkedList(words, head);
     if (checkWord.translation === guess) {
       /* if the answer was correct, then double M, the memory value, and reassign*/
+      const newMemVal = list.head.value.memory_value * 2;
+      list.head.value.memory_value = newMemVal;
+      list.head.value.correct_count++;
+
+      let curr = list.head;
+      let countDown = newMemVal;
+      while (countDown > 0 && curr.next !== null) {
+        curr = curr.next;
+        countDown--;
+      }
+      const temp = new _Node(list.head.value);
+
+      if (curr.next === null) {
+        temp.next = curr.next;
+        curr.next = temp;
+        list.head = list.head.next;
+        curr.value.next = temp.value.id;
+        temp.value.next = null;
+      } else {
+        temp.next = curr.next;
+        curr.next = temp;
+        list.head = list.head.next;
+        curr.value.next = temp.value.id;
+        temp.value.next = temp.next.value.id;
+      }
+      req.language.total_score++;
+      await LanguageService.updateWordsTable(
+        req.app.get("db"),
+        listToArray(list),
+        req.language.id,
+        req.language.total_score
+      );
+      res.json({
+        nextWord: list.head.value.original,
+        totalScore: req.language.total_score,
+        correctCount: list.head.value.correct_count,
+        incorrectCount: list.head.value.incorrect_count,
+        answer: temp.value.translation,
+        isCorrect: true,
+      });
     } else {
       /* if the answer was wrong, reset M, the memory value to 1 and reassign*/
     }
