@@ -61,7 +61,7 @@ languageRouter.get("/head", async (req, res, next) => {
       req.language.id
     );
 
-    // returns  a json response object with the information from the server as json response object, the netxt word, total counts, etc
+    // returns a json response object with the information from the server as json response object, the netxt word, total counts, etc
     res.json({
       nextWord: nextWord.original,
       correctCount: nextWord.correct_count,
@@ -95,14 +95,14 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
 
     // then we have to get the start of the words they are practicing
     // use the get head service and pass in necessary parameters
-    const head = await LanguageService.getLanguageHead(
+    const [{ head }] = await LanguageService.getLanguageHead(
       req.app.get("db"),
       req.language.id
     );
 
     // we then have to figure out a way to check if the word is correct and send a response, translation === guess
     // use the checkTranslation to create a new object and check against the database values
-    const checkWord = await LanguageService.checkTranslation(
+    const [checkWord] = await LanguageService.checkTranslation(
       req.app.get("db"),
       req.language.id
     );
