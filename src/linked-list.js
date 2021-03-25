@@ -129,6 +129,18 @@ class LinkedList {
   }
 }
 
-function listToArray() {}
+function listToArray(linkedList) {
+  let currentNode = linkedList.head;
+  // create a variable to hold the new array with values from the linked list
+  let array = [];
+  // loop through the linked list as long as the list is not empty/null
+  while (currentNode.next !== null) {
+    // push the value into the array we created
+    array.push(currentNode.value);
+    currentNode = currentNode.next;
+  }
+  array.push(currentNode.value);
+  return array;
+}
 
 module.exports = { LinkedList, _Node, listToArray };
