@@ -98,6 +98,31 @@ const LanguageService = {
     }
     return list;
   },
+
+  updateWordsDatabase(db, words, language_id, total_score) {
+    // create a single transaction to ensure that none of our changes are persisted if there is an error
+    return db.transaction(async (trx) => {
+      return Promise.all([
+        trx("language").where({ id: language_id }).update({
+          total_score,
+          head: words[0].id,
+        }),
+        // Map over our words array (which has been updated to match our list), creating a knex transaction to update each word in the array
+        ...words.map((word, i) => {
+          if (i + 1 >= words.length) {
+            word.next = null;
+          } else {
+            word.next = words[i + 1].id;
+          }
+          return trx("word")
+            .where({ id: word.id })
+            .update({
+              ...word,
+            });
+        }),
+      ]);
+    });
+  },
 };
 
 module.exports = LanguageService;
