@@ -137,7 +137,7 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
         temp.value.next = temp.next.value.id;
       }
       req.language.total_score++;
-      await LanguageService.updateWordsTable(
+      await LanguageService.updateWordsDatabase(
         req.app.get("db"),
         listToArray(list),
         req.language.id,
@@ -173,7 +173,7 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
       temp.value.next = temp.next.value.id;
 
       // create a method in the service to update the database
-      await LanguageService.updateWordsTable(
+      await LanguageService.updateWordsDatabase(
         // once the linked list has changed on the server end, the data has to be sent back to the database to persist
         req.app.get("db"),
         listToArray(list),
