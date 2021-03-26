@@ -109,8 +109,12 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
 
     // create a linked list using the service using words from the database
     const list = LanguageService.createLinkedList(words, head);
+
     if (checkWord.translation === guess) {
       /* if the answer was correct, then double M, the memory value, and reassign*/
+      // console.log(checkWord.translation);
+      // console.log(guess);
+
       const newMemVal = list.head.value.memory_value * 2;
       list.head.value.memory_value = newMemVal;
       list.head.value.correct_count++;
@@ -122,8 +126,6 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
         countDown--;
       }
       const temp = new _Node(list.head.value);
-
-      /*
 
       // if we're at the end of the list, next would be empty/null
       if (curr.next === null) {
@@ -146,14 +148,13 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
         req.language.id,
         req.language.total_score
       );
-      */
       res
         .json({
-          // nextWord: list.head.value.original,
-          // totalScore: req.language.total_score,
-          // correctCount: list.head.value.correct_count,
-          // incorrectCount: list.head.value.incorrect_count,
-          // answer: temp.value.translation,
+          nextWord: list.head.value.original,
+          totalScore: req.language.total_score,
+          correctCount: list.head.value.correct_count,
+          incorrectCount: list.head.value.incorrect_count,
+          answer: temp.value.translation,
           isCorrect: true,
         })
         .end();
@@ -161,8 +162,7 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
       /* if the answer was wrong, reset M, the memory value to 1 and reassign*/
       // else  if it is incorrect send another response translation !== guess
       // if wrong, the words tested also gets updated by position in the linked list
-      /*
-      
+
       list.head.value.memory_value = 1;
       list.head.value.incorrect_count++;
 
@@ -189,21 +189,21 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
         req.language.total_score
       );
 
-      */
       // send back the response data to be used on the front end
       res
         .json({
-          // nextWord: list.head.value.original,
-          // totalScore: req.language.total_score,
-          // correctCount: list.head.value.correct_count,
-          // incorrectCount: list.head.value.incorrect_count,
-          // answer: temp.value.translation,
+          nextWord: list.head.value.original,
+          totalScore: req.language.total_score,
+          correctCount: list.head.value.correct_count,
+          incorrectCount: list.head.value.incorrect_count,
+          answer: temp.value.translation,
           isCorrect: false,
         })
         .end();
     }
     next();
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });
