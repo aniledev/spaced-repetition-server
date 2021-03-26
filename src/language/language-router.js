@@ -84,7 +84,7 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
   if (!guess) {
     res.status(400).json({ error: "Missing guess in request body" });
   }
-  // use a try / catch block like th api/language endpoint
+  // use a try / catch block like the api/language endpoint
   try {
     // in order to check the guess we have to get the lists of words from the database
     // use the LanguageService to get the list of words in the database for that language in the database
@@ -123,6 +123,9 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
       }
       const temp = new _Node(list.head.value);
 
+      /*
+
+      // if we're at the end of the list, next would be empty/null
       if (curr.next === null) {
         temp.next = curr.next;
         curr.next = temp;
@@ -143,18 +146,23 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
         req.language.id,
         req.language.total_score
       );
-      res.json({
-        nextWord: list.head.value.original,
-        totalScore: req.language.total_score,
-        correctCount: list.head.value.correct_count,
-        incorrectCount: list.head.value.incorrect_count,
-        answer: temp.value.translation,
-        isCorrect: true,
-      });
+      */
+      res
+        .json({
+          // nextWord: list.head.value.original,
+          // totalScore: req.language.total_score,
+          // correctCount: list.head.value.correct_count,
+          // incorrectCount: list.head.value.incorrect_count,
+          // answer: temp.value.translation,
+          isCorrect: true,
+        })
+        .end();
     } else {
       /* if the answer was wrong, reset M, the memory value to 1 and reassign*/
       // else  if it is incorrect send another response translation !== guess
       // if wrong, the words tested also gets updated by position in the linked list
+      /*
+      
       list.head.value.memory_value = 1;
       list.head.value.incorrect_count++;
 
@@ -180,15 +188,19 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
         req.language.id,
         req.language.total_score
       );
+
+      */
       // send back the response data to be used on the front end
-      res.json({
-        nextWord: list.head.value.original,
-        totalScore: req.language.total_score,
-        correctCount: list.head.value.correct_count,
-        incorrectCount: list.head.value.incorrect_count,
-        answer: temp.value.translation,
-        isCorrect: false,
-      });
+      res
+        .json({
+          // nextWord: list.head.value.original,
+          // totalScore: req.language.total_score,
+          // correctCount: list.head.value.correct_count,
+          // incorrectCount: list.head.value.incorrect_count,
+          // answer: temp.value.translation,
+          isCorrect: false,
+        })
+        .end();
     }
     next();
   } catch (error) {
