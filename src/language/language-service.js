@@ -88,7 +88,7 @@ const LanguageService = {
     // loop through the linked list until current word is null
     while (currentWord !== null) {
       linkedList.insertLast(currentWord);
-      nextWord = currentWord.next;
+      nextId = currentWord.next;
 
       if (nextId === null) {
         currentWord = null;
