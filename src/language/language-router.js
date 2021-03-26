@@ -82,7 +82,7 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
   // console.log(guess);
   //validate is guess field is missing/ if so send an error, 400 status code
   if (!guess) {
-    res.status(400).json({ error: "Missing guess in request body" });
+    res.status(400).json({ error: "Missing 'guess' in request body" });
   }
   // use a try / catch block like the api/language endpoint
   try {
