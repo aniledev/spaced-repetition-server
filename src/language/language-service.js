@@ -96,7 +96,7 @@ const LanguageService = {
         currentWord = words.find((word) => word.id === nextId);
       }
     }
-    return list;
+    return linkedList;
   },
 
   updateWordsDatabase(db, words, language_id, total_score) {
