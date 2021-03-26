@@ -78,8 +78,8 @@ languageRouter.get("/head", async (req, res, next) => {
 languageRouter.post("/guess", bodyParser, async (req, res, next) => {
   // implement me
   // destructure the request body to access the guess
-  const guess = req.body.guess;
-
+  const { guess } = req.body;
+  // console.log(guess);
   //validate is guess field is missing/ if so send an error, 400 status code
   if (!guess) {
     res.status(400).json({ error: "Missing guess in request body" });
