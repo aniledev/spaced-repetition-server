@@ -6,7 +6,6 @@ const { listToArray, _Node } = require("../linked-list");
 
 const languageRouter = express.Router();
 
-// middleware for the languageRouter
 languageRouter
   .use(requireAuth) // jwt middleware authorization
   .use(async (req, res, next) => {
@@ -52,7 +51,6 @@ languageRouter.get("/", async (req, res, next) => {
 
 // use this endpoint to get the first word in the word table in database, use the getLanguageService, getHead
 languageRouter.get("/head", async (req, res, next) => {
-  // implement me
   try {
     // use the LanguageService to get the first word in the list
     // create a variable to hold the next word received from the service
@@ -76,17 +74,12 @@ languageRouter.get("/head", async (req, res, next) => {
 
 // post requests need a json body parser
 languageRouter.post("/guess", bodyParser, async (req, res, next) => {
-  // implement me
-  // destructure the request body to access the guess
   const { guess } = req.body;
-  // console.log(guess);
   //validate is guess field is missing/ if so send an error, 400 status code
   if (!guess) {
     res.status(400).json({ error: "Missing 'guess' in request body" });
   }
-  // use a try / catch block like the api/language endpoint
   try {
-    // in order to check the guess we have to get the lists of words from the database
     // use the LanguageService to get the list of words in the database for that language in the database
     const words = await LanguageService.getLanguageWords(
       req.app.get("db"),
@@ -112,9 +105,6 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
 
     if (checkWord.translation === guess) {
       /* if the answer was correct, then double M, the memory value, and reassign*/
-      // console.log(checkWord.translation);
-      // console.log(guess);
-
       const newMemVal = list.head.value.memory_value * 2;
       list.head.value.memory_value = newMemVal;
       list.head.value.correct_count++;
@@ -189,7 +179,6 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
         req.language.total_score
       );
 
-      // send back the response data to be used on the front end
       res
         .json({
           nextWord: list.head.value.original,
@@ -203,7 +192,6 @@ languageRouter.post("/guess", bodyParser, async (req, res, next) => {
     }
     next();
   } catch (error) {
-    // console.log(error);
     next(error);
   }
 });

@@ -30,7 +30,7 @@ class LinkedList {
   }
 
   insertAt(newValue, index) {
-    // linked lists are technically indexed but a counter variable would at as a stand in
+    // linked lists are technically indexed but a counter variable would act as a stand in
     let count = 1;
     let currNode = this.head;
     while (count < index) {

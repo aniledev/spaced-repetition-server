@@ -5,6 +5,5 @@ module.exports = function errorHandler(error, req, res, next) {
     NODE_ENV === "production"
       ? { error: "Server error" }
       : { error: error.message, details: error };
-  // console.error(error);
   res.status(500).json(response);
 };

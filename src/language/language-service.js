@@ -73,39 +73,28 @@ const LanguageService = {
     const headNode = words.splice(headIndex, 1);
     // insert a node at the end of a new linked list using the list data structure
     linkedList.insertLast(headNode[0]);
-    // console.log("create linked list");
-    // console.log(linkedList);
     // the id is the next element in the array we created
     let nextId = headNode[0].next;
-    // console.log(linkedList);
     // create a variable to hold the current word, the currentWord is te word in the database where the ids match
     let currentWord = words.find((word) => word.id === nextId);
-    // console.log(currentWord);
     // insert currentWord into the last position in the linked list
     linkedList.insertLast(currentWord);
-    // console.log(currentWord);
     // reassign the nextWord to to currentWord.next
     nextId = currentWord.next;
-    // console.log(nextId);
     // reassign the current word variable to where id === nextWord in the words database
     currentWord = words.find((word) => word.id === nextId);
-    // console.log(currentWord);
-    // console.log("before while loop ");
 
     // loop through the linked list until current word is null
     while (currentWord !== null) {
       linkedList.insertLast(currentWord);
       nextId = currentWord.next;
 
-      // console.log(nextId); // gets stuck in an infinite loop; after changes, no longer stuck in loop
       if (nextId === null) {
         currentWord = null;
       } else {
         currentWord = words.find((word) => word.id === nextId);
       }
     }
-    // console.log("after while loop");
-    // console.log(linkedList);
     return linkedList;
   },
 
